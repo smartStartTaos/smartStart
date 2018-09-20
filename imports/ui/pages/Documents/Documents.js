@@ -28,7 +28,37 @@ const handleRemove = (documentId) => {
     });
   }
 };
+const createRoadmap = () => {
+  console.log('roadmapping');
+  doc = {
+    title : 'test',
+    body : 'this is the body',
+    steps : [
+      {
+        name: 'step one',
+        type: 'paragraph',
+        description: 'this is some stuff abotu steps',
+        link: 'http://google.com'
+      },
+      {
+        name: 'step two',
+        type: 'paragraph two',
+        description: 'this is some stuff abotu steps #2',
+        link: 'http://google222.com'
+      }
 
+    ]
+  }
+  console.log(doc)
+  Meteor.call('roadmaps.first', doc, (error, documentId) => {
+    if (error) {
+      Bert.alert(error.reason, 'danger');
+    } else {
+      Bert.alert(documentId, 'success');
+      console.log(documentId)
+    }
+  });
+}
 const Documents = ({
   loading, documents, match, history,
 }) => (!loading ? (
@@ -87,6 +117,9 @@ const Documents = ({
           label: 'Create Your First Document',
         }}
       />}
+      <div
+        onClick={()=>createRoadmap()}
+      >jasonseck</div>
   </StyledDocuments>
 ) : <Loading />);
 
