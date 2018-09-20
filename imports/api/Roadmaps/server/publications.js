@@ -5,7 +5,9 @@ import Roadmaps from '../Roadmaps';
 Meteor.publish('roadmaps', function roadmaps() {
   return Roadmaps.find({ owner: this.userId });
 });
-
+Meteor.publish('allRoadmaps', function allRoadmaps() {
+  return Roadmaps.find({});
+})
 // Note: documents.view is also used when editing an existing document.
 Meteor.publish('roadmaps.view', (roadmapId) => {
   check(roadmapId, String);

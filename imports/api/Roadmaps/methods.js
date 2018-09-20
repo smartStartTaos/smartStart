@@ -31,8 +31,11 @@ Meteor.methods({
   'roadmaps.first': function roadmapsFirst(doc) {
     check(doc,{
       title:String,
-      body:String,
-      steps:Array,
+      description:String,
+      metafields: Array,
+      tags: Array,
+      version: String,
+      pages: Array,
 
     });
     try {
@@ -77,6 +80,22 @@ Meteor.methods({
       handleMethodException(exception);
     }
   },
+  'roadmaps.adminRemove': function roadmapsdminRemove(roadmapId) {
+    check(roadmapId, String);
+
+    try {
+      const docToRemove = Roadmaps.findOne(roadmapId);
+
+      if (docToRemove) {
+        return Roadmaps.remove(roadmapId);
+      }
+
+      throw new Meteor.Error('403', 'Sorry, pup. You\'re not allowed to delete this document.');
+    } catch (exception) {
+      handleMethodException(exception);
+    }
+  },
+
 });
 
 rateLimit({

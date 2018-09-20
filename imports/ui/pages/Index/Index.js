@@ -80,7 +80,7 @@ const Index = () => (
       width="300"
     />
     <h1>SmartStart</h1>
-    <p>A smart way to start.</p>
+    <p>smartDart doc model</p>
     <div>
       <Button href="http://cleverbeagle.com/pup">Read the Docs</Button>
       <Button href="https://github.com/cleverbeagle/pup"><i className="fa fa-star" /> Star on GitHub</Button>

@@ -18,9 +18,10 @@ Roadmaps.deny({
 });
 
 Roadmaps.schema = new SimpleSchema({
-  owner: {
+  createdBy: {
     type: String,
     label: 'The ID of the user this document belongs to.',
+    optional: true,
   },
   createdAt: {
     type: String,
@@ -38,31 +39,74 @@ Roadmaps.schema = new SimpleSchema({
   },
   title: {
     type: String,
-    label: 'The title of the document.',
+    label: 'Roadmap title.',
   },
-  body: {
+  description: {
     type: String,
-    label: 'The body of the document.',
+    label: 'The description of the Roadmap',
   },
-  steps: {
+  metafields: {
     type: Array,
-    label: 'Array of steps in this Roadmap'
+    optional: true
   },
-  'steps.$' : {
-    type: Object
+  'metafields.$':Object,
+  'metafields.$.fieldName':String,
+  'metafields.$.fieldData':String,
+  tags: [String],
+  version: {
+    type:String,
+    defaultValue: 1
   },
-  'steps.$.name' : {
-    type: String
+  pages: {
+    type: Array,
+    label: 'array of pages in the roadmap'
   },
-  'steps.$.type' : {
-    type: String
-  },
-  'steps.$.description' : {
-    type: String
-  },
-  'steps.$.link' : {
-    type: String
-  }
+    'pages.$' : {
+      type: Object
+    },
+      'pages.$.pageTitle' : String,
+      'pages.$.pageDescription' : String,
+      'pages.$.sections' : {
+        type: Array
+      },
+        'pages.$.sections.$' : {
+          type:Object
+        },
+          'pages.$.sections.$.sectionTitle' : {
+            type: String,
+          },
+          'pages.$.sections.$.sectionDescription' : {
+            type: String,
+          },
+          'pages.$.sections.$.sectionHeaderActions' : {
+            type: Object,
+          },
+            'pages.$.sections.$.sectionHeaderActions.popupTutorial' :{
+              type: Object
+            },
+              'pages.$.sections.$.sectionHeaderActions.popupTutorial.popupText' : {
+                type: String
+              },
+              'pages.$.sections.$.sectionHeaderActions.popupTutorial.popupVideoLink' : {
+                type: String
+              },
+              'pages.$.sections.$.sectionHeaderActions.popupTutorial.popupExternalLinks' : [String],
+            'pages.$.sections.$.sectionHeaderActions.externalLinks' : [String],
+            'pages.$.sections.$.sectionHeaderActions.resources' : [String],
+          'pages.$.sections.$.steps' : {
+            type: Array
+          },
+            'pages.$.sections.$.steps.$' : {
+              type: Object
+            },
+            'pages.$.sections.$.steps.$.stepOrder' : Number,
+            'pages.$.sections.$.steps.$.stepTitle' : String,
+            'pages.$.sections.$.steps.$.actionType' : String,
+            'pages.$.sections.$.steps.$.actionLink' : String,
+            'pages.$.sections.$.steps.$.actionTitle' : String,
+            'pages.$.sections.$.steps.$.actionDescription' : String,
+            'pages.$.sections.$.steps.$.actionIdentifier' : String,
+
 });
 
 Roadmaps.attachSchema(Roadmaps.schema);

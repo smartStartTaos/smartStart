@@ -7,6 +7,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { Bert } from 'meteor/themeteorchef:bert';
 import DocumentsCollection from '../../../api/Documents/Documents';
+import RoadmapsCollection from '../../../api/Roadmaps/Roadmaps';
 import { timeago, monthDayYearAtTime } from '../../../modules/dates';
 import Loading from '../../components/Loading/Loading';
 import BlankState from '../../components/BlankState/BlankState';
@@ -19,7 +20,7 @@ const StyledDocuments = styled.div`
 
 const handleRemove = (documentId) => {
   if (confirm('Are you sure? This is permanent!')) {
-    Meteor.call('documents.remove', documentId, (error) => {
+    Meteor.call('roadmaps.adminRemove', documentId, (error) => {
       if (error) {
         Bert.alert(error.reason, 'danger');
       } else {
@@ -31,23 +32,246 @@ const handleRemove = (documentId) => {
 const createRoadmap = () => {
   console.log('roadmapping');
   doc = {
-    title : 'test',
-    body : 'this is the body',
-    steps : [
+    title : 'This is a default roadmap',
+    description : 'This roadmap has been created by the system for testing.',
+    metafields : [
       {
-        name: 'step one',
-        type: 'paragraph',
-        description: 'this is some stuff abotu steps',
-        link: 'http://google.com'
+        fieldName : 'metaFieldOne',
+        fieldData : 'this is a metafield'
       },
       {
-        name: 'step two',
-        type: 'paragraph two',
-        description: 'this is some stuff abotu steps #2',
-        link: 'http://google222.com'
+        fieldName : 'metaFieldTwo',
+        fieldData : 'this is a second metafield'
+      }
+    ],
+    tags : ['tag1', 'tag2','tag3'],
+    version: '1',
+    pages: [
+      {
+        pageTitle: 'this page 1!',
+        pageDescription: 'this is the description for page 1',
+        sections : [
+          {
+            sectionTitle : 'this is the first section',
+            sectionDescription : 'this is the desciption of the first section',
+            sectionHeaderActions : {
+              popupTutorial : {
+                popupText : 'this is the popupText',
+                popupVideoLink : 'http://video.com',
+                popupExternalLinks : [
+                  'http://google.com',
+                  'http://casswilliam.com'
+                ],
+              },
+              externalLinks : [
+                'http://link1.com',
+                'http://link2.com'
+              ],
+              resources : [
+                'resource 1',
+                'resource 2'
+              ]
+            },
+            steps : [
+              {
+                stepOrder: 1,
+                stepTitle: 'step one',
+                actionType: 'video',
+                actionLink: 'video link',
+                actionTitle: 'video title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 2,
+                stepTitle: 'step two',
+                actionType: 'question',
+                actionLink: ' link',
+                actionTitle: 'this is the step 2',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 3,
+                stepTitle: 'step three',
+                actionType: 'account setup',
+                actionLink: 'setup link',
+                actionTitle: 'setup title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              }
+
+            ]
+          },
+          {
+            sectionTitle : 'this is the second section',
+            sectionDescription : 'this is the desciption of the second section',
+            sectionHeaderActions : {
+              popupTutorial : {
+                popupText : 'this is the popupText',
+                popupVideoLink : 'http://video.com',
+                popupExternalLinks : [
+                  'http://google.com',
+                  'http://casswilliam.com'
+                ],
+              },
+              externalLinks : [
+                'http://link1.com',
+                'http://link2.com'
+              ],
+              resources : [
+                'resource 1',
+                'resource 2'
+              ]
+            },
+            steps : [
+              {
+                stepOrder: 1,
+                stepTitle: 'step one',
+                actionType: 'video',
+                actionLink: 'video link',
+                actionTitle: 'video title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 2,
+                stepTitle: 'step two',
+                actionType: 'question',
+                actionLink: ' link',
+                actionTitle: 'this is the step 2',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 3,
+                stepTitle: 'step three',
+                actionType: 'account setup',
+                actionLink: 'setup link',
+                actionTitle: 'setup title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              }
+
+            ]
+          }
+        ]
+      },
+      {
+        pageTitle: 'this page 2!',
+        pageDescription: 'this is the description for page 2',
+        sections : [
+          {
+            sectionTitle : 'this is the first section of page 2',
+            sectionDescription : 'this is the desciption of the first section, page 2',
+            sectionHeaderActions : {
+              popupTutorial : {
+                popupText : 'this is the popupText',
+                popupVideoLink : 'http://video.com',
+                popupExternalLinks : [
+                  'http://google.com',
+                  'http://casswilliam.com'
+                ],
+              },
+              externalLinks : [
+                'http://link1.com',
+                'http://link2.com'
+              ],
+              resources : [
+                'resource 1',
+                'resource 2'
+              ]
+            },
+            steps : [
+              {
+                stepOrder: 1,
+                stepTitle: 'step one',
+                actionType: 'video',
+                actionLink: 'video link',
+                actionTitle: 'video title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 2,
+                stepTitle: 'step two',
+                actionType: 'question',
+                actionLink: ' link',
+                actionTitle: 'this is the step 2',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 3,
+                stepTitle: 'step three',
+                actionType: 'account setup',
+                actionLink: 'setup link',
+                actionTitle: 'setup title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              }
+
+            ]
+          },
+          {
+            sectionTitle : 'this is the second section of page 2',
+            sectionDescription : 'this is the desciption of the second section, page 2',
+            sectionHeaderActions : {
+              popupTutorial : {
+                popupText : 'this is the popupText',
+                popupVideoLink : 'http://video.com',
+                popupExternalLinks : [
+                  'http://google.com',
+                  'http://casswilliam.com'
+                ],
+              },
+              externalLinks : [
+                'http://link1.com',
+                'http://link2.com'
+              ],
+              resources : [
+                'resource 1',
+                'resource 2'
+              ]
+            },
+            steps : [
+              {
+                stepOrder: 1,
+                stepTitle: 'step one',
+                actionType: 'video',
+                actionLink: 'video link',
+                actionTitle: 'video title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 2,
+                stepTitle: 'step two',
+                actionType: 'question',
+                actionLink: ' link',
+                actionTitle: 'this is the step 2',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 3,
+                stepTitle: 'step three',
+                actionType: 'account setup',
+                actionLink: 'setup link',
+                actionTitle: 'setup title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              }
+
+            ]
+          }
+        ]
       }
 
+
     ]
+
+
   }
   console.log(doc)
   Meteor.call('roadmaps.first', doc, (error, documentId) => {
@@ -60,14 +284,13 @@ const createRoadmap = () => {
   });
 }
 const Documents = ({
-  loading, documents, match, history,
+  loading, roadmaps, match, history,
 }) => (!loading ? (
   <StyledDocuments>
     <div className="page-header clearfix">
-      <h4 className="pull-left">Documents</h4>
-      <Link className="btn btn-success pull-right" to={`${match.url}/new`}>Add Document</Link>
+      <h4 className="pull-left">Roadmaps</h4>
     </div>
-    {documents.length ?
+    {roadmaps.length ?
       <Table responsive>
         <thead>
           <tr>
@@ -79,7 +302,7 @@ const Documents = ({
           </tr>
         </thead>
         <tbody>
-          {documents.map(({
+          {roadmaps.map(({
             _id, title, createdAt, updatedAt,
           }) => (
             <tr key={_id}>
@@ -109,31 +332,33 @@ const Documents = ({
         </tbody>
       </Table> : <BlankState
         icon={{ style: 'solid', symbol: 'file-alt' }}
-        title="You're plum out of documents, friend!"
-        subtitle="Add your first document by clicking the button below."
+        title="No roadmaps exist."
+        subtitle="Add a system test roadmap by clicking the button below."
         action={{
           style: 'success',
-          onClick: () => history.push(`${match.url}/new`),
-          label: 'Create Your First Document',
+          onClick: () => createRoadmap(),
+          label: 'Create System test roadmap',
         }}
       />}
-      <div
+      <Button
+        bsStyle="primary"
         onClick={()=>createRoadmap()}
-      >jasonseck</div>
+      >Insert Test Roadmap
+      </Button>
   </StyledDocuments>
 ) : <Loading />);
 
 Documents.propTypes = {
   loading: PropTypes.bool.isRequired,
-  documents: PropTypes.arrayOf(PropTypes.object).isRequired,
+  roadmaps: PropTypes.arrayOf(PropTypes.object).isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
 
 export default withTracker(() => {
-  const subscription = Meteor.subscribe('documents');
+  const subscription = Meteor.subscribe('allRoadmaps');
   return {
     loading: !subscription.ready(),
-    documents: DocumentsCollection.find().fetch(),
+    roadmaps: RoadmapsCollection.find().fetch(),
   };
 })(Documents);
