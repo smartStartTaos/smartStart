@@ -30,7 +30,6 @@ const handleRemove = (documentId) => {
   }
 };
 const createRoadmap = () => {
-  console.log('roadmapping');
   doc = {
     title : 'This is a default roadmap',
     description : 'This roadmap has been created by the system for testing.',
@@ -266,20 +265,138 @@ const createRoadmap = () => {
             ]
           }
         ]
+      },
+      {
+        pageTitle: 'this page 3!',
+        pageDescription: 'this is the description for page 3',
+        sections : [
+          {
+            sectionTitle : 'this is the first section of page 3',
+            sectionDescription : 'this is the desciption of the first section, page 3',
+            sectionHeaderActions : {
+              popupTutorial : {
+                popupText : 'this is the popupText',
+                popupVideoLink : 'http://video.com',
+                popupExternalLinks : [
+                  'http://google.com',
+                  'http://casswilliam.com'
+                ],
+              },
+              externalLinks : [
+                'http://link1.com',
+                'http://link2.com'
+              ],
+              resources : [
+                'resource 1',
+                'resource 2'
+              ]
+            },
+            steps : [
+              {
+                stepOrder: 1,
+                stepTitle: 'step one',
+                actionType: 'video',
+                actionLink: 'video link',
+                actionTitle: 'video title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 2,
+                stepTitle: 'step two',
+                actionType: 'question',
+                actionLink: ' link',
+                actionTitle: 'this is the step 2',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 3,
+                stepTitle: 'step three',
+                actionType: 'account setup',
+                actionLink: 'setup link',
+                actionTitle: 'setup title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              }
+
+            ]
+          },
+          {
+            sectionTitle : 'this is the second section of page 3',
+            sectionDescription : 'this is the desciption of the second section, page 3',
+            sectionHeaderActions : {
+              popupTutorial : {
+                popupText : 'this is the popupText',
+                popupVideoLink : 'http://video.com',
+                popupExternalLinks : [
+                  'http://google.com',
+                  'http://casswilliam.com'
+                ],
+              },
+              externalLinks : [
+                'http://link1.com',
+                'http://link2.com'
+              ],
+              resources : [
+                'resource 1',
+                'resource 2'
+              ]
+            },
+            steps : [
+              {
+                stepOrder: 1,
+                stepTitle: 'step one',
+                actionType: 'video',
+                actionLink: 'video link',
+                actionTitle: 'video title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 2,
+                stepTitle: 'step two',
+                actionType: 'question',
+                actionLink: ' link',
+                actionTitle: 'this is the step 2',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 3,
+                stepTitle: 'step three',
+                actionType: 'account setup',
+                actionLink: 'setup link',
+                actionTitle: 'setup title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              },
+              {
+                stepOrder: 4,
+                stepTitle: 'step four',
+                actionType: 'account setup',
+                actionLink: 'setup link',
+                actionTitle: 'setup title',
+                actionDescription: 'this is the description',
+                actionIdentifier: 'actionIdentifier'
+              }
+
+            ]
+          }
+        ]
       }
+
 
 
     ]
 
 
   }
-  console.log(doc)
   Meteor.call('roadmaps.first', doc, (error, documentId) => {
     if (error) {
       Bert.alert(error.reason, 'danger');
     } else {
       Bert.alert(documentId, 'success');
-      console.log(documentId)
     }
   });
 }
@@ -312,7 +429,7 @@ const Documents = ({
               <td>
                 <Button
                   bsStyle="primary"
-                  onClick={() => history.push(`${match.url}/${_id}`)}
+                  onClick={() => history.push('/roadmaps/' + _id)}
                   block
                 >
                   View
@@ -359,6 +476,6 @@ export default withTracker(() => {
   const subscription = Meteor.subscribe('allRoadmaps');
   return {
     loading: !subscription.ready(),
-    roadmaps: RoadmapsCollection.find().fetch(),
+    roadmaps: RoadmapsCollection.find({},{sort:{createdAt:1}}).fetch(),
   };
 })(Documents);
