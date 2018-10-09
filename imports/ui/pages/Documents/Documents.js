@@ -47,7 +47,7 @@ const createRoadmap = () => {
     version: '1',
     pages: [
       {
-        pageTitle: 'this page 1!',
+        pageTitle: 'Page 1',
         pageDescription: 'this is the description for page 1',
         sections : [
           {
@@ -158,8 +158,8 @@ const createRoadmap = () => {
         ]
       },
       {
-        pageTitle: 'this page 2!',
-        pageDescription: 'this is the description for page 2',
+        pageTitle: 'Page 2',
+        pageDescription: 'lets go deeper!',
         sections : [
           {
             sectionTitle : 'this is the first section of page 2',
@@ -268,7 +268,7 @@ const createRoadmap = () => {
         ]
       },
       {
-        pageTitle: 'this page 3!',
+        pageTitle: 'page 3',
         pageDescription: 'this is the description for page 3',
         sections : [
           {
