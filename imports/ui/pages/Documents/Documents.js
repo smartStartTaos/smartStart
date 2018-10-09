@@ -88,7 +88,7 @@ const createRoadmap = () => {
                 actionLink: ' link',
                 actionTitle: 'this is the step 2',
                 actionDescription: 'People have lots of different reasons for wanting to start a business, from financial independence to wanting to do something to improve their local community. Take some time here to write down what your motivations for starting a business are.',
-                actionIdentifier: 'actionIdentifier'
+                actionIdentifier: 'whystartbusiness'
               },
               {
                 stepOrder: 3,
@@ -97,7 +97,7 @@ const createRoadmap = () => {
                 actionLink: ' link',
                 actionTitle: 'this is the step 2',
                 actionDescription: 'In as simple terms as possible, describe the core of your business. What is the products, who are the customers, and describe a transaction.',
-                actionIdentifier: 'actionIdentifier'
+                actionIdentifier: 'corebusiness'
               }
 
 

@@ -24,57 +24,73 @@ const handleRemove = (documentId, history) => {
     });
   }
 };
-const RenderSteps = (section) => {
-  console.log(section)
-  return section.steps.map((step)=>{
-      switch(step.actionType) {
-        case 'video':
-        return (
-          <div key={step.stepTitle} style={{margin:'15px',background:'#fafafa',padding:'8px'}}>
-            <div style={style.stepTitle}>Step 1 - {step.stepTitle}</div>
-            <YouTube
-              videoId={step.actionLink}
-              opts={{
-                height:'390',
-                width:'640'
+class RenderSteps extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state={
+      temp:'nothing'
+    }
+  }
+  render() {
+console.log(this.state);
+
+return this.props.steps.map((step)=>{
+    switch(step.actionType) {
+      case 'video':
+      return (
+        <div key={step.stepTitle} style={{margin:'15px',background:'#fafafa',padding:'8px'}}>
+          <div style={style.stepTitle}>Step 1 - {step.stepTitle}</div>
+          <YouTube
+            videoId={step.actionLink}
+            opts={{
+              height:'390',
+              width:'640'
+            }}
+            />
+            <div style={style.stepDescription}>{step.actionDescription}</div>
+        </div>
+      );
+      case 'question':
+      return (
+        <div key={step.stepTitle} style={{margin:'15px',background:'#fafafa',padding:'8px'}}>
+          <div style={style.stepTitle}>{step.stepTitle}</div>
+          <div style={style.stepDescription}>{step.actionDescription}</div>
+          <div>
+            <textarea
+              style={style.textArea}
+              value={this.state[step.actionIdentifier]}
+              onChange={(e)=>{
+                this.setState({
+                  [step.actionIdentifier] : e.target.value
+                })
               }}
-              />
-              <div style={style.stepDescription}>{step.actionDescription}</div>
+            />
           </div>
-        );
-        case 'question':
-        return (
-          <div key={step.stepTitle} style={{margin:'15px',background:'#fafafa',padding:'8px'}}>
-            <div style={style.stepTitle}>{step.stepTitle}</div>
-            <div style={style.stepDescription}>{step.actionDescription}</div>
-            <div>
-              <textarea
-                style={style.textArea}
-              />
-            </div>
-          </div>
-        );
-        case 'account setup':
-        return (
-          <div key={step.stepTitle} style={{margin:'15px',background:'#fafafa',padding:'8px'}}>
-            <div style={style.stepTitle}>{step.stepTitle}</div>
-            <div style={style.stepDescription}>{step.actionDescription}</div>
-            <div style={style.externalLink}><a href={step.actionLink} target="_blank">{step.actionLink}</a></div>
-          </div>
-        );
-        default:
-        return (
-          <div key={step.stepTitle} style={{margin:'15px',background:'#fafafa',padding:'8px'}}>
-            <div>{step.stepTitle} not found</div>
-          </div>
+        </div>
+      );
+      case 'account setup':
+      return (
+        <div key={step.stepTitle} style={{margin:'15px',background:'#fafafa',padding:'8px'}}>
+          <div style={style.stepTitle}>{step.stepTitle}</div>
+          <div style={style.stepDescription}>{step.actionDescription}</div>
+          <div style={style.externalLink}><a href={step.actionLink} target="_blank">{step.actionLink}</a></div>
+        </div>
+      );
+      default:
+      return (
+        <div key={step.stepTitle} style={{margin:'15px',background:'#fafafa',padding:'8px'}}>
+          <div>{step.stepTitle} not found</div>
+        </div>
 
-        )
+      )
 
-        }
+      }
 
 
-  })
+})
 
+
+}
 }
 const RenderSections = (page) => {
     return page.sections.map((section)=>{
@@ -82,7 +98,7 @@ const RenderSections = (page) => {
         <div key={section.sectionTitle} style={{margin:'20px'}}>
           <div style={style.sectionTitle}>{section.sectionTitle}</div>
           <div style={style.sectionDescription}>{section.sectionDescription}</div>
-          <RenderSteps {...section} />
+          <RenderSteps {...section}/>
         </div>
       )
     })
