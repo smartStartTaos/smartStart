@@ -51,8 +51,8 @@ const createRoadmap = () => {
         pageDescription: 'this is the description for page 1',
         sections : [
           {
-            sectionTitle : 'this is the first section',
-            sectionDescription : 'this is the desciption of the first section',
+            sectionTitle : 'Getting started...',
+            sectionDescription : 'Hey! Lets get you started. To begin with were going to watch a video and then complete a few easy excercies. Everything here is intented to build the foundation of your business plan.',
             sectionHeaderActions : {
               popupTutorial : {
                 popupText : 'this is the popupText',
@@ -74,37 +74,38 @@ const createRoadmap = () => {
             steps : [
               {
                 stepOrder: 1,
-                stepTitle: 'step one',
+                stepTitle: 'Business Planning Made Easy with LivePlan',
                 actionType: 'video',
-                actionLink: 'video link',
-                actionTitle: 'video title',
-                actionDescription: 'this is the description',
+                actionLink: 'https://www.youtube.com/channel/UCqmxqL7G5BGKlHrb7YedgOQ?v=KTBh2LKoEdk',
+                actionTitle: 'LivePlan',
+                actionDescription: 'So you’re an entrepreneur, and you’re ready to start pitching your idea to lenders and investors.  And you know what they’re going to ask for: your business plan. But you don’t have an MBA, you aren’t an accountant, and you aren’t getting into business to stay up all night crunching numbers.',
                 actionIdentifier: 'actionIdentifier'
               },
               {
                 stepOrder: 2,
-                stepTitle: 'step two',
+                stepTitle: 'Why do you want to start a business?',
                 actionType: 'question',
                 actionLink: ' link',
                 actionTitle: 'this is the step 2',
-                actionDescription: 'this is the description',
+                actionDescription: 'People have lots of different reasons for wanting to start a business, from financial independence to wanting to do something to improve their local community. Take some time here to write down what your motivations for starting a business are.',
                 actionIdentifier: 'actionIdentifier'
               },
               {
                 stepOrder: 3,
-                stepTitle: 'step three',
-                actionType: 'account setup',
-                actionLink: 'setup link',
-                actionTitle: 'setup title',
-                actionDescription: 'this is the description',
+                stepTitle: 'What your core business idea?',
+                actionType: 'question',
+                actionLink: ' link',
+                actionTitle: 'this is the step 2',
+                actionDescription: 'In as simple terms as possible, describe the core of your business. What is the products, who are the customers, and describe a transaction.',
                 actionIdentifier: 'actionIdentifier'
               }
+
 
             ]
           },
           {
-            sectionTitle : 'this is the second section',
-            sectionDescription : 'this is the desciption of the second section',
+            sectionTitle : 'Accounts Setup',
+            sectionDescription : 'There are several services that can help you on your way. In the next section we will explore some of them and walk you through setting them up.',
             sectionHeaderActions : {
               popupTutorial : {
                 popupText : 'this is the popupText',
@@ -126,29 +127,29 @@ const createRoadmap = () => {
             steps : [
               {
                 stepOrder: 1,
-                stepTitle: 'step one',
-                actionType: 'video',
-                actionLink: 'video link',
-                actionTitle: 'video title',
-                actionDescription: 'this is the description',
+                stepTitle: 'Password Protection',
+                actionType: 'account setup',
+                actionLink: 'https://www.lastpass.com/',
+                actionTitle: 'Password Protection',
+                actionDescription: 'First things first! If youre going to set up all of these account, you will need to keep track of a lot of passwords. Head on over to lastpass and sign up for an account. Last Pass will keep track of all of your passwords for you, so you dont have to waste time remembering them.',
                 actionIdentifier: 'actionIdentifier'
               },
               {
                 stepOrder: 2,
-                stepTitle: 'step two',
-                actionType: 'question',
-                actionLink: ' link',
-                actionTitle: 'this is the step 2',
-                actionDescription: 'this is the description',
+                stepTitle: 'Banking',
+                actionType: 'account setup',
+                actionLink: 'https://citibank.com',
+                actionTitle: 'Banking',
+                actionDescription: 'Youll need a band account to stuff all that hard earned money into. Citibank is a great choice, and they offer great incentives to small businesses.',
                 actionIdentifier: 'actionIdentifier'
               },
               {
                 stepOrder: 3,
-                stepTitle: 'step three',
+                stepTitle: 'Accounting Software',
                 actionType: 'account setup',
-                actionLink: 'setup link',
-                actionTitle: 'setup title',
-                actionDescription: 'this is the description',
+                actionLink: 'https://quickbooks.intuit.com/',
+                actionTitle: 'Accounting Software',
+                actionDescription: 'We don’t expect you to be an accounting expert. That’s why QuickBooks helps keep everything organized in one place. And, if you have an accountant, share your books for seamless collaboration.',
                 actionIdentifier: 'actionIdentifier'
               }
 
