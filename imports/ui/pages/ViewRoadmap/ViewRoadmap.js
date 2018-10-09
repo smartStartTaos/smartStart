@@ -57,7 +57,7 @@ const RenderSteps = (section) => {
         case 'account setup':
         return (
           <div key={step.stepTitle} style={{margin:'15px',background:'#fafafa',padding:'8px'}}>
-            <div style={style.stepTitle}>{step.stepTitle} account setup</div>
+            <div style={style.stepTitle}>{step.stepTitle}</div>
             <div style={style.stepDescription}>{step.actionDescription}</div>
             <div style={style.externalLink}><a href={step.actionLink} target="_blank">{step.actionLink}</a></div>
           </div>
