@@ -8,8 +8,8 @@ import { Roles } from 'meteor/alanning:roles';
 const AuthenticatedNavigation = ({ name, history, userId }) => (
   <div>
     <Nav>
-      <LinkContainer to="/documents">
-        <NavItem eventKey={1} href="/documents">Documents</NavItem>
+      <LinkContainer to="/dashboard">
+        <NavItem eventKey={1} href="/dashboard">Dashboard</NavItem>
       </LinkContainer>
       {Roles.userIsInRole(userId, 'admin') ? <NavDropdown eventKey={2} title="Admin" id="admin-nav-dropdown">
         <LinkContainer exact to="/admin/users">

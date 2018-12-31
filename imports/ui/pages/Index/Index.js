@@ -2,13 +2,17 @@ import React from 'react';
 import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { lighten, darken } from 'polished';
+import { Link } from 'react-router-dom';
 
 const StyledIndex = styled.div`
-  padding: 20px;
-  background: var(--cb-blue);
+  padding: 0px;
   text-align: center;
   border-radius: 3px;
   color: #fff;
+  height: calc(100vh - 175px);
+  display: flex;
+  justify-content:center;
+  flex-direction:column;
 
   img {
     width: 100px;
@@ -17,6 +21,7 @@ const StyledIndex = styled.div`
 
   h1 {
     font-size: 28px;
+    color:#1d1d1d;
   }
 
   p {
@@ -72,23 +77,16 @@ const StyledIndex = styled.div`
   }
 `;
 
-const Index = () => (
+const Index = (props) => {console.log(props); return(
+
   <StyledIndex>
-    <img
-      src="https://www.smartstart.co/wp-content/uploads/2016/10/Med-Smart-Stat-Logo-and-Title.jpg"
-      alt="SmartStart"
-      width="300"
-    />
-    <h1>SmartStart</h1>
-    <p>smartDart doc model</p>
     <div>
-      <Button href="http://cleverbeagle.com/pup">Read the Docs</Button>
-      <Button href="https://github.com/cleverbeagle/pup"><i className="fa fa-star" /> Star on GitHub</Button>
+    <h1>SmartStart</h1>
+    <Button bsStyle="primary"
+      onClick={()=>{props.history.push('/login/')}}
+    >login</Button>
     </div>
-    <footer>
-      <p>Want to ensure that your product sees the light of day? <a href="https://cleverbeagle.com?utm_source=pup&utm_medium=app&utm_campaign=oss">Work with Clever Beagle</a>.</p>
-    </footer>
   </StyledIndex>
-);
+)};
 
 export default Index;

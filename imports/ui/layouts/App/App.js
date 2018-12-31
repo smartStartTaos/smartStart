@@ -16,11 +16,10 @@ import Authenticated from '../../components/Authenticated/Authenticated';
 import Authorized from '../../components/Authorized/Authorized';
 import Public from '../../components/Public/Public';
 import Index from '../../pages/Index/Index';
-import Documents from '../../pages/Documents/Documents';
-import NewDocument from '../../pages/NewDocument/NewDocument';
-import ViewDocument from '../../pages/ViewDocument/ViewDocument';
-import EditDocument from '../../pages/EditDocument/EditDocument';
+
 import ViewRoadmap from '../../pages/ViewRoadmap/ViewRoadmap';
+import Dashboard from '../../pages/ClientInterface/Dashboard.js';
+
 import Signup from '../../pages/Signup/Signup';
 import Login from '../../pages/Login/Login';
 import Logout from '../../pages/Logout/Logout';
@@ -28,14 +27,15 @@ import VerifyEmail from '../../pages/VerifyEmail/VerifyEmail';
 import RecoverPassword from '../../pages/RecoverPassword/RecoverPassword';
 import ResetPassword from '../../pages/ResetPassword/ResetPassword';
 import Profile from '../../pages/Profile/Profile';
+
 import AdminUsers from '../../pages/AdminUsers/AdminUsers';
 import AdminUser from '../../pages/AdminUser/AdminUser';
 import AdminUserSettings from '../../pages/AdminUserSettings/AdminUserSettings';
+
 import NotFound from '../../pages/NotFound/NotFound';
 import Footer from '../../components/Footer/Footer';
 import Terms from '../../pages/Terms/Terms';
 import Privacy from '../../pages/Privacy/Privacy';
-import ExamplePage from '../../pages/ExamplePage/ExamplePage';
 import VerifyEmailAlert from '../../components/VerifyEmailAlert/VerifyEmailAlert';
 import GDPRConsentModal from '../../components/GDPRConsentModal/GDPRConsentModal';
 import { onLogin, onLogout } from '../../../modules/redux/actions';
@@ -68,6 +68,12 @@ const StyledApp = styled.div`
     }
   }
 `;
+
+const test = () => {
+  return (
+    <div>hello</div>
+  )
+}
 
 class App extends React.Component {
   constructor(props) {
@@ -102,27 +108,24 @@ class App extends React.Component {
             emailAddress={props.emailAddress}
           />
           : ''}
-        {props.authenticated ? <GDPRConsentModal userId={props.userId} /> : ''}
         <Navigation {...props} {...state} />
         <Grid>
           <Switch>
             <Route exact name="index" path="/" component={Index} />
-            <Authenticated exact path="/documents" component={Documents} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-            <Authenticated exact path="/documents/new" component={NewDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
-            <Route exact path="/documents/:_id" component={ViewDocument} />
             <Route exact path="/roadmaps/:_id" component={ViewRoadmap} />
 
-            <Authenticated exact path="/documents/:_id/edit" component={EditDocument} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
             <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+            <Authenticated exact path="/dashboard" component={Dashboard} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
             <Public path="/signup" component={Signup} {...props} {...state} />
             <Public path="/login" component={Login} {...props} {...state} />
             <Route path="/logout" render={routeProps => <Logout {...routeProps} setAfterLoginPath={setAfterLoginPath} />} {...props} {...state} />
             <Route name="verify-email" path="/verify-email/:token" component={VerifyEmail} />
             <Route name="recover-password" path="/recover-password" component={RecoverPassword} />
             <Route name="reset-password" path="/reset-password/:token" component={ResetPassword} />
+
             <Route name="terms" path="/terms" component={Terms} />
             <Route name="privacy" path="/privacy" component={Privacy} />
-            <Route name="examplePage" path="/example-page" component={ExamplePage} />
+
             <Authorized exact allowedRoles={['admin']} path="/admin/users" pathAfterFailure="/" component={AdminUsers} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
             <Authorized exact allowedRoles={['admin']} path="/admin/users/settings" pathAfterFailure="/" component={AdminUserSettings} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
             <Authorized exact allowedRoles={['admin']} path="/admin/users/:_id" pathAfterFailure="/" component={AdminUser} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
@@ -134,6 +137,7 @@ class App extends React.Component {
     );
   }
 }
+
 
 App.defaultProps = {
   userId: '',

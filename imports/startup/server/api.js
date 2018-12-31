@@ -9,6 +9,9 @@ import '../../api/Documents/server/publications';
 import '../../api/Roadmaps/server/indexes';
 import '../../api/Roadmaps/server/publications';
 
+import '../../api/Profiles/server/indexes';
+import '../../api/Profiles/server/publications';
+
 import '../../api/OAuth/server/methods';
 
 import '../../api/Users/server/methods';
