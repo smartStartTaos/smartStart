@@ -7,7 +7,7 @@
     "productAddress": "PO Box 1486, Taos, NM 87571"
   },
   "private": {
-	"MAIL_URL": "smtp://info@cityswivel.com:barcackle18@mail.brownrice.com:587",
+	"MAIL_URL": "",
     "OAuth": {
       "facebook": {
         "enabled": true,
