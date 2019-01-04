@@ -109,11 +109,9 @@ class App extends React.Component {
           />
           : ''}
         <Navigation {...props} {...state} />
-        <Grid>
           <Switch>
             <Route exact name="index" path="/" component={Index} />
             <Route exact path="/roadmaps/:_id" component={ViewRoadmap} />
-
             <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
             <Authenticated exact path="/dashboard" component={Dashboard} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
             <Public path="/signup" component={Signup} {...props} {...state} />
@@ -131,7 +129,6 @@ class App extends React.Component {
             <Authorized exact allowedRoles={['admin']} path="/admin/users/:_id" pathAfterFailure="/" component={AdminUser} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
             <Route component={NotFound} />
           </Switch>
-        </Grid>
         <Footer />
       </StyledApp>
     );
