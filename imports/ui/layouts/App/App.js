@@ -19,6 +19,7 @@ import Index from '../../pages/Index/Index';
 
 import ViewRoadmap from '../../pages/ViewRoadmap/ViewRoadmap';
 import Dashboard from '../../pages/ClientInterface/Dashboard.js';
+import Dashboard2 from '../../pages/ClientInterface/Dashboard2.js';
 
 import Signup from '../../pages/Signup/Signup';
 import Login from '../../pages/Login/Login';
@@ -114,6 +115,7 @@ class App extends React.Component {
             <Route exact path="/roadmaps/:_id" component={ViewRoadmap} />
             <Authenticated exact path="/profile" component={Profile} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
             <Authenticated exact path="/dashboard" component={Dashboard} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
+            <Authenticated exact path="/dashboard2" component={Dashboard2} setAfterLoginPath={setAfterLoginPath} {...props} {...state} />
             <Public path="/signup" component={Signup} {...props} {...state} />
             <Public path="/login" component={Login} {...props} {...state} />
             <Route path="/logout" render={routeProps => <Logout {...routeProps} setAfterLoginPath={setAfterLoginPath} />} {...props} {...state} />
