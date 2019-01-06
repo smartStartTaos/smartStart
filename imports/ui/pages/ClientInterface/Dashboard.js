@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Meteor } from 'meteor/meteor';
 
 import { Switch, Route, Redirect } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
@@ -15,6 +16,9 @@ import dashboardRoutes from "./routes/dashboardRoutes";
 import dashboardStyle from "./assets/jss/material-dashboard-react/layouts/dashboardStyle.jsx";
 import DashboardPage from "./views/Dashboard/Dashboard.jsx";
 import UserProfile from "./views/UserProfile/UserProfile.jsx";
+import RoadmapList from "./views/Roadmaps/RoadmapList";
+import FirstRoadmap from "./views/Roadmaps/FirstRoadmap";
+import SecondRoadmap from "./views/Roadmaps/SecondRoadmap";
 
 import RouteWithProps from "./components/RouteWithProps";
 
@@ -67,6 +71,10 @@ class Dashboard extends React.Component {
                   <Switch>
                     <RouteWithProps path="/dashboard" component={DashboardPage} {...props} />
                     <RouteWithProps path="/user" component={UserProfile} {...props}/>
+                    <RouteWithProps exact path="/roadmaps" component={RoadmapList} {...props}/>
+                    <RouteWithProps exact path="/roadmaps/firstroadmap" component={FirstRoadmap} {...props}/>
+                    <RouteWithProps exact path="/roadmaps/secondroadmap" component={SecondRoadmap} {...props}/>
+
                   </Switch>
                 </div>
               </div>

@@ -19,6 +19,7 @@ import Accessibility from "@material-ui/icons/Accessibility";
 import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
+import FlightTakeoff from "@material-ui/icons/FlightTakeoff";
 // core components
 import GridItem from "../../components/Grid/GridItem.jsx";
 import GridContainer from "../../components/Grid/GridContainer.jsx";
@@ -44,10 +45,27 @@ class Dashboard extends React.Component {
     }
     this.updateProfile = this.updateProfile.bind(this);
     this.createProfile = this.createProfile.bind(this);
+    this.calcFinish = this.calcFinish.bind(this);
   }
   state = {
     value: 0
   };
+  calcFinish() {
+    const total = 3;
+    var running = 0;
+    if (this.props.userProfile.businessBasics[0].businessName) {
+      running = running + 1;
+    }
+    if (this.props.userProfile.businessBasics[0].businessAddress) {
+      running = running + 1;
+    }
+    if (this.props.userProfile.businessBasics[0].businessPhone) {
+      running = running + 1;
+    }
+
+    var final = (running / total) * 100;
+    return final;
+  }
   updateProfile() {
   console.log(this.props.userProfile);
   const data = {
@@ -115,7 +133,7 @@ class Dashboard extends React.Component {
                     <Warning />
                   </Danger>
                   <a href="#pablo" onClick={e => e.preventDefault()}>
-                    Get more space
+                    Research Banking Options
                   </a>
                 </div>
               </CardFooter>
@@ -131,10 +149,25 @@ class Dashboard extends React.Component {
                 <h3 className={classes.cardTitle}>$34,245</h3>
               </CardHeader>
               <CardFooter stats>
-                <div className={classes.stats}>
-                  <DateRange />
-                  Last 24 Hours
+              {(this.props.userProfile && this.props.userProfile.businessBasics) ? (
+                <div>
+                <div>
+                  <LinearProgress variant="determinate" value={this.calcFinish()} />
                 </div>
+                <div style={styles.list}>
+                  <div style={styles.myitem}>Name - {this.props.userProfile.businessBasics[0].businessName}</div>
+                  <div style={styles.myitem}>Address - {this.props.userProfile.businessBasics[0].businessAddress}</div>
+                  <div style={styles.myitem}>Phone - {this.props.userProfile.businessBasics[0].businessPhone}</div>
+                </div>
+                </div>
+              ) : (
+                <div className={classes.stats}>
+                    Start the roadmap!
+                </div>
+
+              )
+              }
+
               </CardFooter>
             </Card>
           </GridItem>
@@ -142,15 +175,14 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="danger" stats icon>
                 <CardIcon color="danger">
-                  <Icon>info_outline</Icon>
+                  <FlightTakeoff />
                 </CardIcon>
-                <p className={classes.cardCategory}>Fixed Issues</p>
-                <h3 className={classes.cardTitle}>75</h3>
+                <p className={classes.cardCategory}>Bplan Outline</p>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
                   <LocalOffer />
-                  Tracked from Github
+                  Start your business plan
                 </div>
               </CardFooter>
             </Card>
@@ -257,7 +289,11 @@ class Dashboard extends React.Component {
     );
   }
 }
-
+ const styles = {
+   myitem : {
+     padding: '5px'
+   }
+ }
 Dashboard.propTypes = {
   classes: PropTypes.object.isRequired
 };

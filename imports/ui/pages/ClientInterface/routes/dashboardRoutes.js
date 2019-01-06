@@ -7,6 +7,7 @@ import BubbleChart from "@material-ui/icons/BubbleChart";
 import LocationOn from "@material-ui/icons/LocationOn";
 import Notifications from "@material-ui/icons/Notifications";
 import Unarchive from "@material-ui/icons/Unarchive";
+import MergeType from "@material-ui/icons/MergeType";
 // core components/views
 import DashboardPage from "../views/Dashboard/Dashboard.jsx";
 import UserProfile from "../views/UserProfile/UserProfile.jsx";
@@ -14,6 +15,8 @@ import TableList from "../views/TableList/TableList.jsx";
 import Typography from "../views/Typography/Typography.jsx";
 import Icons from "../views/Icons/Icons.jsx";
 import NotificationsPage from "../views/Notifications/Notifications.jsx";
+import RoadmapList from '../views/Roadmaps/RoadmapList.js';
+
 
 const dashboardRoutes = [
   {
@@ -31,33 +34,13 @@ const dashboardRoutes = [
     component: UserProfile
   },
   {
-    path: "/table",
-    sidebarName: "Table List",
-    navbarName: "Table List",
-    icon: "content_paste",
-    component: TableList
+    path: "/roadmaps",
+    sidebarName: "Roadmaps",
+    navbarName: "Roadmaps",
+    icon: MergeType,
+    component: RoadmapList
   },
-  {
-    path: "/typography",
-    sidebarName: "Typography",
-    navbarName: "Typography",
-    icon: LibraryBooks,
-    component: Typography
-  },
-  {
-    path: "/icons",
-    sidebarName: "Icons",
-    navbarName: "Icons",
-    icon: BubbleChart,
-    component: Icons
-  },
-  {
-    path: "/notifications",
-    sidebarName: "Notifications",
-    navbarName: "Notifications",
-    icon: Notifications,
-    component: NotificationsPage
-  },
+
   { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
 ];
 

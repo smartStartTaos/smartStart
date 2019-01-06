@@ -55,6 +55,15 @@ Profiles.schema = new SimpleSchema({
   'metafields.$':Object,
   'metafields.$.fieldName':String,
   'metafields.$.fieldData':String,
+  businessBasics : {
+    type : Array,
+    optional: true
+  },
+  'businessBasics.$': Object,
+  'businessBasics.$.businessName' : {type:String,optional:true},
+  'businessBasics.$.businessAddress' : {type:String,optional:true},
+  'businessBasics.$.businessPhone' : {type:String,optional:true},
+
 });
 
 Profiles.attachSchema(Profiles.schema);

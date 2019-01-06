@@ -29,6 +29,7 @@ Meteor.methods({
       _id: String,
       test: Match.Maybe(String),
       metafields: Match.Maybe(Array),
+      businessBasics : Match.Maybe(Array),
     });
 
     try {
