@@ -20,6 +20,8 @@ import BugReport from "@material-ui/icons/BugReport";
 import Code from "@material-ui/icons/Code";
 import Cloud from "@material-ui/icons/Cloud";
 import FlightTakeoff from "@material-ui/icons/FlightTakeoff";
+import Edit from "@material-ui/icons/Edit";
+
 // core components
 import GridItem from "../../components/Grid/GridItem.jsx";
 import GridContainer from "../../components/Grid/GridContainer.jsx";
@@ -141,12 +143,40 @@ class Dashboard extends React.Component {
           </GridItem>
           <GridItem xs={12} sm={6} md={3}>
             <Card>
+              <CardHeader color="warning" stats icon>
+                <CardIcon color="warning">
+                  <AccountBalance />
+                </CardIcon>
+                <p className={classes.cardCategory}>My business accounts</p>
+                <h3 className={classes.cardTitle}>
+                  4/10 <small>Tasks</small>
+                </h3>
+              </CardHeader>
+              <CardFooter stats>
+                <div>
+                  <Danger>
+                    <Warning />
+                  </Danger>
+                  <div>welcome sequence</div>
+                  <div>my business bank account</div>
+                  <div>my business website</div>
+                  <div>facebook</div>
+                  <div>these are all links to an outside place</div>
+                </div>
+              </CardFooter>
+            </Card>
+          </GridItem>
+
+          <GridItem xs={12} sm={6} md={3}>
+            <Card>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
                   <Store />
                 </CardIcon>
                 <p className={classes.cardCategory}>Business Info</p>
-                <h3 className={classes.cardTitle}>$34,245</h3>
+                {this.props.userProfile && this.props.userProfile.businessBasics &&
+                  <div style={{color:'black'}}>{this.props.userProfile.businessBasics[0].businessName}</div>
+                }
               </CardHeader>
               <CardFooter stats>
               {(this.props.userProfile && this.props.userProfile.businessBasics) ? (
@@ -155,9 +185,9 @@ class Dashboard extends React.Component {
                   <LinearProgress variant="determinate" value={this.calcFinish()} />
                 </div>
                 <div style={styles.list}>
-                  <div style={styles.myitem}>Name - {this.props.userProfile.businessBasics[0].businessName}</div>
-                  <div style={styles.myitem}>Address - {this.props.userProfile.businessBasics[0].businessAddress}</div>
-                  <div style={styles.myitem}>Phone - {this.props.userProfile.businessBasics[0].businessPhone}</div>
+                  <div style={styles.myitem}>Name - {this.props.userProfile.businessBasics[0].businessName}<Edit /></div>
+                  <div style={styles.myitem}>Address - {this.props.userProfile.businessBasics[0].businessAddress}<Edit /></div>
+                  <div style={styles.myitem}>Phone - {this.props.userProfile.businessBasics[0].businessPhone}<Edit /></div>
                 </div>
                 </div>
               ) : (
@@ -221,66 +251,52 @@ class Dashboard extends React.Component {
         </GridContainer>
         <GridContainer>
           <GridItem xs={12} sm={12} md={6}>
-            <CustomTabs
-              title="Tasks:"
-              headerColor="primary"
-              tabs={[
-                {
-                  tabName: "Bugs",
-                  tabIcon: BugReport,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[0, 3]}
-                      tasksIndexes={[0, 1, 2, 3]}
-                      tasks={bugs}
-                    />
-                  )
-                },
-                {
-                  tabName: "Website",
-                  tabIcon: Code,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[0]}
-                      tasksIndexes={[0, 1]}
-                      tasks={website}
-                    />
-                  )
-                },
-                {
-                  tabName: "Server",
-                  tabIcon: Cloud,
-                  tabContent: (
-                    <Tasks
-                      checkedIndexes={[1]}
-                      tasksIndexes={[0, 1, 2]}
-                      tasks={server}
-                    />
-                  )
-                }
-              ]}
-            />
+          <Card>
+          <CardHeader color="warning">
+            <h4 className={classes.cardTitleWhite}>Roadmaps</h4>
+            <p className={classes.cardCategoryWhite}>
+              Roadmap Status / Completion
+            </p>
+          </CardHeader>
+          <CardBody>
+            <div style={styles.roadmaplist}>
+
+            </div>
+          </CardBody>
+          </Card>
           </GridItem>
           <GridItem xs={12} sm={12} md={6}>
             <Card>
               <CardHeader color="warning">
-                <h4 className={classes.cardTitleWhite}>Employees Stats</h4>
+                <h4 className={classes.cardTitleWhite}>Available Roadmaps</h4>
                 <p className={classes.cardCategoryWhite}>
-                  New employees on 15th September, 2016
+                  available roadmaps
                 </p>
               </CardHeader>
               <CardBody>
               <LinearProgress color="secondary" variant="determinate" value={83} />
-                <Table
-                  tableHeaderColor="warning"
-                  tableHead={["ID", "Name", "Salary", "Country"]}
-                  tableData={[
-                    ["1", "Dakota Rice", "$36,738", "Niger"],
-                    ["2", "Minerva Hooper", "$23,789", "Curaçao"],
-                    ["3", "Sage Rodriguez", "$56,142", "Netherlands"],
-                    ["4", "Philip Chaney", "$38,735", "Korea, South"]
-                  ]}
-                />
+              <div style={styles.roadmapList}>
+                <div style={styles.roadmapListItem} onClick={()=>{this.props.history.push('/roadmaps/firstroadmap')}}>First Roadmap</div>
+                <div style={styles.roadmapListItem}><LinearProgress variant="determinate" value={33} /></div>
+              </div>
+              <div style={styles.roadmapList}>
+                <div style={styles.roadmapListItem}>second Roadmap</div>
+                <div style={styles.roadmapListItem}><LinearProgress variant="determinate" value={13} /></div>
+              </div>
+              <div style={styles.roadmapList}>
+                <div style={styles.roadmapListItem}>third Roadmap</div>
+                <div style={styles.roadmapListItem}><LinearProgress variant="determinate" value={0} /></div>
+              </div>
+              <div style={styles.roadmapList}>
+                <div style={styles.roadmapListItem}>fifth Roadmap</div>
+                <div style={styles.roadmapListItem}><LinearProgress variant="determinate" value={56} /></div>
+              </div>
+              <div style={styles.roadmapList}>
+                <div style={styles.roadmapListItem}>Sixth Roadmap</div>
+                <div style={styles.roadmapListItem}><LinearProgress variant="determinate" value={22} /></div>
+              </div>
+
+
               </CardBody>
             </Card>
           </GridItem>
@@ -292,6 +308,17 @@ class Dashboard extends React.Component {
  const styles = {
    myitem : {
      padding: '5px'
+   },
+   roadmapList : {
+     display:'flex',
+     flexDirection:'row',
+     alignItems:'center',
+     padding:'15px',
+     marginBottom:'10px'
+   },
+   roadmapListItem : {
+     flex:1,
+     cursor:'pointer'
    }
  }
 Dashboard.propTypes = {

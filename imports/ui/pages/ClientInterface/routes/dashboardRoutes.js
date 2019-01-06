@@ -27,18 +27,19 @@ const dashboardRoutes = [
     component: DashboardPage
   },
   {
-    path: "/user",
-    sidebarName: "User Profile",
-    navbarName: "Profile",
-    icon: Person,
-    component: UserProfile
-  },
-  {
     path: "/roadmaps",
     sidebarName: "Roadmaps",
     navbarName: "Roadmaps",
     icon: MergeType,
     component: RoadmapList
+  },
+
+  {
+    path: "/user",
+    sidebarName: "User Profile",
+    navbarName: "Profile",
+    icon: Person,
+    component: UserProfile
   },
 
   { redirect: true, path: "/", to: "/dashboard", navbarName: "Redirect" }
