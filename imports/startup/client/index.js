@@ -12,6 +12,7 @@ import { Bert } from 'meteor/themeteorchef:bert';
 import App from '../../ui/layouts/App/App';
 import mainReducer from '../../modules/redux/reducers';
 import '../both/api';
+import "perfect-scrollbar/css/perfect-scrollbar.css";
 
 Bert.defaults.style = 'growl-bottom-right';
 
@@ -48,7 +49,7 @@ injectGlobal`
     position: relative;
     min-height: 100%;
   }
-  
+
   body {
     margin-bottom: 80px;
     margin: 0;
